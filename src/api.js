@@ -4,6 +4,9 @@ const express = require('express')
 const api = express()
 //requerer as rotas
 const routers = require('./routers/routers')
+const cors = require('cors')
+
+api.use(cors())
 
 //informar que API podera utlizar urls 
 api.use(express.urlencoded({extended:false}))
