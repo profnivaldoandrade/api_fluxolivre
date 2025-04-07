@@ -27,7 +27,7 @@ class Users {
 
     async findByEmail(email) {
         try {
-            let user = await knex.select(["id", "name", "email","password"]).where({ email: email }).table('users')
+            let user = await knex.select(["id", "name", "email","password", "role"]).where({ email: email }).table('users')
             return user.length > 0
                 ? { validated: true, values: user[0] }
                 : { validated: true, values: undefined }
@@ -36,10 +36,10 @@ class Users {
         }
     }
 
-    async create(name, email, password) {
+    async create(name, email, password,role) {
         try {
             await knex.insert({
-                name: name, email: email, password: password
+                name: name, email: email, password: password, role:role
             })
                 .table('users')
             return { validated: true }

@@ -31,8 +31,8 @@ class UsersControllers {
         }
     }
     async new(req, res) {
-        let { name, email, password } = req.body
-        let result = await users.create(name,email ,passHash(password))
+        let { name, email, password,role } = req.body
+        let result = await users.create(name,email ,passHash(password),role)
         result.validated
             ? res.status(201).json({ sucess: true, message: "Usuário Cadastrado com Sucesso !" })
             : res.status(404).json({ sucess: false, message: result.error })
@@ -51,8 +51,8 @@ class UsersControllers {
                 if(!passValiated){
                     res.status(406).json({sucess: false, message: 'Senha Invalida'})
                 }else{
-                    let token = jwt.sign({email: user.values.email}, process.env.SECRET, {expiresIn: 1000 })
-                    res.status(200).json({sucess: true, token: token})
+                    let token = jwt.sign({email: user.values.email, role: user.values.role}, process.env.SECRET, {expiresIn: 1000 })
+                    res.status(200).json({sucess: true, token: token, perfil: user.values.role})
                 }
             }
         }    
