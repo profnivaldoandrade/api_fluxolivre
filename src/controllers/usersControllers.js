@@ -31,7 +31,8 @@ class UsersControllers {
         }
     }
     async new(req, res) {
-        let { name, email, password,role } = req.body
+        let { name, email, password} = req.body
+        let role = 0
         let result = await users.create(name,email ,passHash(password),role)
         result.validated
             ? res.status(201).json({ sucess: true, message: "Usuário Cadastrado com Sucesso !" })
