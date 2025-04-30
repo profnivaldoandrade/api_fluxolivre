@@ -5,5 +5,5 @@ const api = require('./src/api')
 
 //inicializar o servidor
 api.listen(process.env.PORT,()=>{
-    console.log('\n API INICIALIZADA!!')
+    console.log('\n API INICIALIZADA NA PORTA:',process.env.PORT)
 })
