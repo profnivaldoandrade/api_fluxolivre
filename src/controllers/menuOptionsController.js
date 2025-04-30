@@ -1,11 +1,12 @@
 const menu_options = require('../models/Menu_Options')
 class menuOptionsController{
     async new(req,res){
-        const { name, icon, display_order } = req.body
+        const { name, icon, display_order,router } = req.body
         const result = await menu_options.create({
             name,
             icon,
             display_order,
+            router,
         })
         result.validated
         ? res.status(201).json({sucess: true, message: 'Incluido com Sucesso!!'})
