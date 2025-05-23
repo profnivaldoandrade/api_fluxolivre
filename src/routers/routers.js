@@ -9,7 +9,7 @@ const menuOptionsController = require('../controllers/menuOptionsController')
 
 //rota url 
 //rota de listar os usuarios
-router.get('/users',usersControllers.listAll)
+router.get('/users',authUserMiddleware,usersControllers.listAll)
 //rota de listar um unico usuario
 router.get('/user/:id',usersControllers.listOne)
 router.post('/user', usersControllers.new)
